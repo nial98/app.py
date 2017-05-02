@@ -16,23 +16,23 @@ try:
     while True:
             if GPIO.input(PIR_PIN):
                     sec = 0
-                    r = http.request('GET', '52.60.213.136/occupied')
                     
-                    if not r.status == 200:
-                            print 'Server unreachable: ' + str(r.status)
             else:
                     sec += 1
-                    r = http.request('GET' , '52.60.213.136/unoccupied')
                     
-                    if not r.status == 200:
-                            print 'Server unreachable: ' + str(r.status)
-            
             time.sleep(1)
             if sec >= 10:
                     print "not occupied"
                     print "time since motion detected", sec, "seconds"
+                    r = http.request('GET' , '52.60.213.136/unoccupied')
+                    if not r.status == 200:
+                           print 'Server unreachable: ' + str(r.status)
             else:
                     print "occupied"
+                    r = http.request('GET', '52.60.213.136/occupied')
+                    if not r.status == 200:
+                           print 'Server unreachable: ' + str(r.status)
+                           
 except KeyboardInterrupt:
         print "quit"
         GPIO.cleanup()

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+        table, th, td {
+            border: 1px solid black;
+        }
+</style>
+</head>
+{% block content %}
+        {% if status == "occupied" %}
+        <body style="background-color:pink;">
+        <center>
+                <h1>Study Room Status</h1>
+                {% if status %}
+                  <table style="width:50%">
+                        <tr>
+                                <td>Study Room Status:</td>
+                                <td> {{ status }}!</td>
+                        </tr>
+                  </table>
+                {% else %}
+                  <p>Room data unavailable!</p>
+                {% endif %}
+        </center>
+        </body>
+
+        {% else %}
+        <body style="background-color:lightgreen;">
+        <center>
+                <h1>Study Room Status</h1>
+                {% if status %}
+                  <table style="width:50%">
+                        <tr>
+                                <td>Study Room Status:</td>
+                                <td> {{ status }}!</td>
+                        </tr>
+                  </table>
+                {% else %}
+                  <p>Room data unavailable!</p>
+                {% endif %}
+        </center>
+        </body>
+
+        {% endif %}
+{% endblock content %}
+
+</html>
